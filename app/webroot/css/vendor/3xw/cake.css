@@ -90,25 +90,12 @@ form .error-message {
 p.error,
 .error-message {
 	background: #ffcc00;
-	background-repeat: repeat-x;
-	background-image: -moz-linear-gradient(top, #ffcc00, #E6B800);
-	background-image: -ms-linear-gradient(top, #ffcc00, #E6B800);
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffcc00), to(#E6B800));
-	background-image: -webkit-linear-gradient(top, #ffcc00, #E6B800);
-	background-image: -o-linear-gradient(top, #ffcc00, #E6B800);
-	background-image: linear-gradient(top, #ffcc00, #E6B800);
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	border: 1px solid rgba(0, 0, 0, 0.2);
 	margin-bottom: 18px;
 	padding: 7px 14px;
 	color: #404040;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
-	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 .success,
 .message,
@@ -118,29 +105,11 @@ p.error,
 	clear: both;
 	color: #fff;
 	background: #c43c35;
-	border: 1px solid rgba(0, 0, 0, 0.5);
-	background-repeat: repeat-x;
-	background-image: -moz-linear-gradient(top, #ee5f5b, #c43c35);
-	background-image: -ms-linear-gradient(top, #ee5f5b, #c43c35);
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#ee5f5b), to(#c43c35));
-	background-image: -webkit-linear-gradient(top, #ee5f5b, #c43c35);
-	background-image: -o-linear-gradient(top, #ee5f5b, #c43c35);
-	background-image: linear-gradient(top, #ee5f5b, #c43c35);
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
 }
 .success {
 	clear: both;
 	color: #fff;
-	border: 1px solid rgba(0, 0, 0, 0.5);
-	background: #3B8230;
-	background-repeat: repeat-x;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#76BF6B), to(#3B8230));
-	background-image: -webkit-linear-gradient(top, #76BF6B, #3B8230);
-	background-image: -moz-linear-gradient(top, #76BF6B, #3B8230);
-	background-image: -ms-linear-gradient(top, #76BF6B, #3B8230);
-	background-image: -o-linear-gradient(top, #76BF6B, #3B8230);
-	background-image: linear-gradient(top, #76BF6B, #3B8230);
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+	background: #5cb85c;
 }
 p.error {
 	font-family: Monaco, Consolas, Courier, monospace;
@@ -179,10 +148,6 @@ p.error em {
 	color: #000;
 	display: block;
 	float: left;
-	-moz-box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.5);
-	-webkit-box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.5);
-	box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.5);
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
 }
 .cake-debug,
 .cake-error {
@@ -222,9 +187,6 @@ p.error em {
 	line-height: 14px;
 	display: inline-block;
 	text-decoration: none;
-	-moz-box-shadow: inset 0px 1px 0 rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: inset 0px 1px 0 rgba(0, 0, 0, 0.3);
-	box-shadow: inset 0px 1px 0 rgba(0, 0, 0, 0.3);
 }
 .cake-code-dump pre {
 	position: relative;
@@ -239,7 +201,6 @@ p.error em {
 	margin: 0px 0 10px 0;
 	padding: 1em;
 	overflow: auto;
-	text-shadow: none;
 }
 .cake-stack-trace li {
 	padding: 10px 5px 0px;
@@ -250,12 +211,6 @@ p.error em {
 	-wekbkit-border-radius: 4px;
 	border-radius: 4px;
 	background: #dcdcdc;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#dcdcdc));
-	background-image: -webkit-linear-gradient(top, #fefefe, #dcdcdc);
-	background-image: -moz-linear-gradient(top, #fefefe, #dcdcdc);
-	background-image: -ms-linear-gradient(top, #fefefe, #dcdcdc);
-	background-image: -o-linear-gradient(top, #fefefe, #dcdcdc);
-	background-image: linear-gradient(top, #fefefe, #dcdcdc);
 }
 /* excerpt */
 .cake-code-dump pre,
@@ -297,14 +252,10 @@ p.error em {
 	color:#666;
 }
 .code-coverage-results div.start {
-	border:1px solid #aaa;
-	border-width:1px 1px 0px 1px;
 	margin-top:30px;
 	padding-top:5px;
 }
 .code-coverage-results div.end {
-	border:1px solid #aaa;
-	border-width:0px 1px 1px 1px;
 	margin-bottom:30px;
 	padding-bottom:5px;
 }
