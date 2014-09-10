@@ -43,3 +43,13 @@
 *************************************/
 .text-align--center { text-align: center; }
 .text-align--right { text-align: right; }
+
+
+/* date
+*************************************/
+.datetime label,
+.time label,
+.date label { display: block; }
+.datetime select.form-control,
+.time select.form-control,
+.date select.form-control { width:auto; display:inline-block;}

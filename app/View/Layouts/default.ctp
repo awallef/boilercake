@@ -27,6 +27,7 @@
 
         echo $this->Html->css(array(
             'vendor/twitter/bootstrap.min',
+            'vendor/twitter/bootstrap-select',
             'vendor/fontawesome/font-awesome.min',
             'vendor/3xw/fonts-path-fix',
             'vendor/3xw/cake',
@@ -70,6 +71,7 @@
         echo $this->Html->script(array(
             'vendor/jquery/jquery-1.10.1.min',
             'vendor/twitter/bootstrap.min',
+            'vendor/twitter/bootstrap-select.min',
             'app'
         ));
         
