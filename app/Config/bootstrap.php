@@ -80,8 +80,9 @@ Cache::config('default', array('engine' => 'File'));
  *
  * Configure::write('Dispatcher.filters', array(
  *		'MyCacheFilter', //  will use MyCacheFilter class from the Routing/Filter package in your app.
+ *		'MyCacheFilter' => array('prefix' => 'my_cache_'), //  will use MyCacheFilter class from the Routing/Filter package in your app with settings array.
  *		'MyPlugin.MyFilter', // will use MyFilter class from the Routing/Filter package in MyPlugin plugin.
- * 		array('callable' => $aFunction, 'on' => 'before', 'priority' => 9), // A valid PHP callback type to be called on beforeDispatch
+ *		array('callable' => $aFunction, 'on' => 'before', 'priority' => 9), // A valid PHP callback type to be called on beforeDispatch
  *		array('callable' => $anotherMethod, 'on' => 'after'), // A valid PHP callback type to be called on afterDispatch
  *
  * ));
@@ -104,4 +105,70 @@ CakeLog::config('error', array(
 	'engine' => 'File',
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
+));
+
+/* * *
+ *       _____                    _________       __    __  .__                      
+ *      /  _  \ ______ ______    /   _____/ _____/  |__/  |_|__| ____    ____  ______
+ *     /  /_\  \\____ \\____ \   \_____  \_/ __ \   __\   __\  |/    \  / ___\/  ___/
+ *    /    |    \  |_> >  |_> >  /        \  ___/|  |  |  | |  |   |  \/ /_/  >___ \ 
+ *    \____|__  /   __/|   __/  /_______  /\___  >__|  |__| |__|___|  /\___  /____  >
+ *            \/|__|   |__|             \/     \/                   \//_____/     \/ 
+ */
+
+/* LNG
+ * ******************************* */
+Configure::write('Config.languages', array('fra', 'deu', 'eng'));
+Configure::write('Config.language', 'fra');
+define('DEFAULT_LANGUAGE', 'fra');
+
+/* LNG --> HELPER SETTINGS
+ * ******************************* */
+/* will help create route from AppHelper::url method & AppController::redirect method */
+
+function router_url_language($url) {
+    if ($lang = Configure::read('Config.language')) {
+        if (is_array($url)) {
+            if (!isset($url['language'])) {
+                $url['language'] = $lang;
+            }
+            if ($url['language'] == DEFAULT_LANGUAGE) {
+                unset($url['language']);
+            }
+        } else if ($url == '/' && $lang !== DEFAULT_LANGUAGE) {
+            $url.= $lang;
+        }
+    }
+
+    return $url;
+}
+
+/* STORAGE
+ * ******************************* */
+require_once('storage.php');
+
+/* BACKEND MENU
+ * ******************************* */
+Configure::write('Config.backendMenu', array(
+    'Gestion du site' => array(
+        'dropdown' => array(
+            'Ecoles' => array('controller' => 'schools', 'action' => 'index'),
+            'Cours' => array('controller' => 'courses', 'action' => 'index'),
+            'Programmes' => array('controller' => 'programmes', 'action' => 'index'),
+            'Villes' => array('controller' => 'cities', 'action' => 'index'),
+            'Promotions' => array('controller' => 'promotions', 'action' => 'index'),
+            'Destinations' => array('controller' => 'destinations', 'action' => 'index'),
+            'Langues' => array('controller' => 'languages', 'action' => 'index')
+        )
+    ),
+    'Medias' => array('controller' => 'attachments', 'action' => 'index', 'admin' => true),
+    
+    'Utilisateurs' => array(
+        'dropdown' => array(
+            'Utilisateurs' => array('controller' => 'users', 'action' => 'index', 'admin' => true),
+            'Roles' => array('controller' => 'roles', 'action' => 'index', 'admin' => true),
+        )
+    ),
+    
+    'Logout' => array('controller' => 'users', 'action' => 'logout', 'admin' => true),
 ));

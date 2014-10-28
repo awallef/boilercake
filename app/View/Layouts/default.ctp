@@ -23,11 +23,13 @@
         </title>
         
         <?php
+        
+        $this->HtmlVersion->version = '0.0.1';
+        
         echo $this->Html->meta('icon');
 
-        echo $this->Html->css(array(
+        echo $this->HtmlVersion->css(array(
             'vendor/twitter/bootstrap.min',
-            'vendor/twitter/bootstrap-select',
             'vendor/fontawesome/font-awesome.min',
             'vendor/3xw/fonts-path-fix',
             'vendor/3xw/cake',
@@ -37,10 +39,6 @@
 
         echo $this->fetch('css');
         ?>
-        
-        <!--[if lt IE 8]>
-        <?php echo $this->Html->css('vendor/coliff/bootstrap-ie7'); ?>
-        <![endif]-->
     </head>
     <body>
         <div id="container" >
@@ -51,40 +49,34 @@
                 </div>
             <![endif]-->
             
-            <?php echo $this->element('header'); ?>
-            
             <div id="content" class="container">
                 <?php
                 echo $this->Session->flash(); 
                 echo $this->fetch('content');
+                echo $this->element('sql_dump');
                 ?>
             </div>
             
-            <?php echo $this->element('footer'); ?>
+            
             
         </div>
-         
+        
         <?php
-        
-        echo $this->element('sql_dump');
-        
         echo $this->Html->script(array(
             'vendor/jquery/jquery-1.10.1.min',
             'vendor/twitter/bootstrap.min',
-            'vendor/twitter/bootstrap-select.min',
             'app'
         ));
-        
         ?>
          
         <!--[if lt IE 10]>
-        <?php echo $this->Html->script('vendor/3xw/ie-lt-10'); ?>
+        <?php echo $this->HtmlVersion->script('vendor/3xw/ie-lt-10'); ?>
         <![endif]-->
         <!--[if lt IE 9]>
-        <?php echo $this->Html->script('vendor/boilerplate/html5-3.6-respond-1.1.0.min'); ?>
+        <?php echo $this->HtmlVersion->script('vendor/boilerplate/html5-3.6-respond-1.1.0.min'); ?>
         <![endif]-->
         <!--[if lt IE 8]>
-        <?php echo $this->Html->script('vendor/3xw/ie-lt-8'); ?>
+        <?php echo $this->HtmlVersion->script('vendor/3xw/ie-lt-8'); ?>
         <![endif]-->
         <?php echo $this->fetch('script'); ?>
         

@@ -22,6 +22,7 @@
 *************************************/
 .display--none { display: none; }
 .display--block { display: block; }
+.display--inline { display: inline; }
 .position--relative{ position: relative; }
 .position--absolute{ position: absolute; }
 
@@ -43,13 +44,3 @@
 *************************************/
 .text-align--center { text-align: center; }
 .text-align--right { text-align: right; }
-
-
-/* date
-*************************************/
-.datetime label,
-.time label,
-.date label { display: block; }
-.datetime select.form-control,
-.time select.form-control,
-.date select.form-control { width:auto; display:inline-block;}

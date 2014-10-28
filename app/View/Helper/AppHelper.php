@@ -30,4 +30,7 @@ App::uses('Helper', 'View');
  * @package       app.View.Helper
  */
 class AppHelper extends Helper {
+    public function url($url = null, $full = false) {
+        return parent::url(router_url_language($url), $full);
+    }
 }
