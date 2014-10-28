@@ -102,8 +102,8 @@ class AppModel extends Model {
             
             $tempFKeyTable = explode('_',$this->hasAndBelongsToMany[$alias]['foreignKey']);
             
-            $fKey = ( strpos( $modelTable , $tempFKeyTable[0]) === 0 )? $this->hasAndBelongsToMany[$alias]['foreignKey'] : $this->hasAndBelongsToMany[$alias]['associationForeignKey'];
-            $aKey = ( strpos( $modelTable , $tempFKeyTable[0]) === 0 )? $this->hasAndBelongsToMany[$alias]['associationForeignKey'] : $this->hasAndBelongsToMany[$alias]['foreignKey'];
+            $fKey = $this->hasAndBelongsToMany[$alias]['foreignKey'];
+            $aKey = $this->hasAndBelongsToMany[$alias]['associationForeignKey'];
 
             // create queries
             $values = "";
