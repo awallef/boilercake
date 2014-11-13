@@ -14,9 +14,8 @@
 /build.xml
 /composer.json
 /index.php
-app/webroot/files
-/app/webroot/imagecache
-/app/Plugin
+/app/webroot/imagecache/
+/app/webroot/files/
 
 # OS generated files #
 ######################
@@ -28,6 +27,10 @@ app/webroot/files
 ehthumbs.db
 Thumbs.db
 
-# NET BEANS          #
-######################
-/nbproject
+### NetBeans
+nbproject/private/*
+
+# grunt #
+#########
+app/node_modules
+app/.sass-cache
