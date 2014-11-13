@@ -25,9 +25,13 @@ module.exports = function (grunt) {
                     'webroot/css/vendor.min.css': [
                         'webroot/css/vendor/twitter/bootstrap.min.css',
                         'webroot/css/vendor/fontawesome/font-awesome.min.css',
+                        'webroot/css/vendor/daneden/animate.css',
+                        'webroot/css/vendor/h5bp/effeckt.css',
+                        'webroot/css/vendor/IanLunn/hover.css',
+                        'webroot/css/vendor/yairEO/fancyInput.css',
                         'webroot/css/vendor/3xw/fonts-path-fix.css',
                         'webroot/css/vendor/3xw/cake.css',
-                        'webroot/css/vendor/3xw/helpers.css'
+                        'webroot/css/vendor/3xw/helpers.css',
                     ]
                 }
             }
@@ -67,14 +71,8 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'webroot/js/vendor.min.js': [
-                        'webroot/js/vendor/vimeo/froogaloop2.min.js',
-                        'webroot/js/vendor/underscorejs/underscore-1.7.0.min.js',
                         'webroot/js/vendor/jquery/jquery-1.10.1.min.js',
-                        'webroot/js/vendor/twitter/bootstrap.min.js',
-                        'webroot/js/vendor/monospaced/hamster.js',
-                        'webroot/js/vendor/angular/angular-1.2.18.js',
-                        'webroot/js/vendor/angular/modules/mousewheel.js',
-                        'webroot/js/vendor/greensock/TweenMax.min.js'
+                        'webroot/js/vendor/twitter/bootstrap.min.js'
                     ]
                 }
             }

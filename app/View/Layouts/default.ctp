@@ -32,6 +32,10 @@
         echo $this->HtmlVersion->css(array(
             'vendor/twitter/bootstrap.min',
             'vendor/fontawesome/font-awesome.min',
+            //'vendor/daneden/animate.css', // http://daneden.github.io/animate.css/
+            //'vendor/h5bp/effeckt.css', // http://h5bp.github.io/Effeckt.css/
+            //'vendor/IanLunn/hover.css', // http://ianlunn.github.io/Hover/
+            //'vendor/yairEO/fancyInput.css', // http://dropthebit.com/demos/fancy_input/fancyInput.html
             'vendor/3xw/fonts-path-fix',
             'vendor/3xw/cake',
             'vendor/3xw/helpers',

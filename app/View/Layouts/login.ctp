@@ -57,10 +57,10 @@
                     <?php echo $this->Session->flash(); ?>
                 </div>
                 
-                <?php
-                echo $this->fetch('content');
-                echo $this->element('sql_dump');
-                ?>
+                <?php echo $this->fetch('content'); ?>
+                <div class="container">
+                    <?php echo $this->element('sql_dump'); ?>
+                </div>
             </div>
             
             
@@ -71,7 +71,8 @@
         echo $this->Html->script(array(
             'vendor/jquery/jquery-1.10.1.min',
             'vendor/twitter/bootstrap.min',
-            'app'
+            'vendor/greensock/TweenLite.min',
+            'admin/app'
         ));
         ?>
          

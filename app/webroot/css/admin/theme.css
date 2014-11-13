@@ -1,4 +1,7 @@
-body{background: #eee url(../../img/admin/layout/sativa.png);}
+body{
+    background-color: #444;
+    background: url(../../img/admin/layout/cloud.jpg);
+}
 html,body{
     position: relative;
     height: 100%;

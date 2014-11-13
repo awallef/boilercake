@@ -67,6 +67,7 @@
             'vendor/jquery/jquery-1.10.1.min',
             'vendor/jquery/plugins/chosen.jquery.min',
             'vendor/twitter/bootstrap.min',
+            'vendor/greensock/TweenLite.min',
             'vendor/tinymce/tinymce.min',
             'admin/app'
         ));
