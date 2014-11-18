@@ -4,7 +4,7 @@ App::uses('Controller', 'Controller');
 
 class AppController extends Controller {
     
-    public $theme = 'Default'; 
+    public $theme = 'Front'; 
     
     public $helpers = array('Markdown', 'Image', 'Embed','HtmlVersion');
     
