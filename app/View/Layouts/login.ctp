@@ -72,7 +72,7 @@
             'vendor/jquery/jquery-1.10.1.min',
             'vendor/twitter/bootstrap.min',
             'vendor/greensock/TweenLite.min',
-            'admin/app'
+            'admin/login'
         ));
         ?>
          
