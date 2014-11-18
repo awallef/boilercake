@@ -117,6 +117,7 @@ class UsersController extends AppController {
                 $this->Session->setFlash(__('Nom d\'user ou mot de passe invalide, réessayer'));
             }
         }
+        $this->theme = 'Admin';
         $this->layout = 'login';
     }
 

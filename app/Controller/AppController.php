@@ -4,6 +4,8 @@ App::uses('Controller', 'Controller');
 
 class AppController extends Controller {
     
+    public $theme = 'Default'; 
+    
     public $helpers = array('Markdown', 'Image', 'Embed','HtmlVersion');
     
     public $components = array(
@@ -33,7 +35,7 @@ class AppController extends Controller {
         );
         
         if (array_key_exists('admin', $this->request->params)) {
-            $this->layout = 'admin';
+            $this->theme = 'Admin';
         }
     }
 
