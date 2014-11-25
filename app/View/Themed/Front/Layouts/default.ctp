@@ -43,6 +43,9 @@
         ));
 
         echo $this->fetch('css');
+        
+        echo $this->element('iOS');
+        
         ?>
     </head>
     <body>

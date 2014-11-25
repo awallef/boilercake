@@ -29,7 +29,8 @@
         INIT                        : 'INIT',
         SHOW_UPLOAD_MANY            : 'SHOW_UPLOAD_MANY',
         SHOW_CHOOSE_MANY            : 'SHOW_CHOOSE_MANY',
-        SHOW_EMBED                  : 'SHOW_EMBED'
+        SHOW_EMBED                  : 'SHOW_EMBED',
+        EDIT_FILE                   : 'EDIT_FILE'
     };
     
     var Notification = { 
@@ -43,7 +44,8 @@
         SET_MODAL_BOY               : 'SET_MODAL_BOY',
         SHOW_FILES                  : 'SHOW_FILES',
         REMOVE_FILE_FROM_LIST       : 'REMOVE_FILE_FROM_LIST',
-        ADD_FILE_TO_LIST            : 'ADD_FILE_TO_LIST'
+        ADD_FILE_TO_LIST            : 'ADD_FILE_TO_LIST',
+        MODAL_EDIT_HANDLE_POST      : 'MODAL_EDIT_HANDLE_POST'
     };
     
     /* AddFileToList
@@ -160,7 +162,6 @@
     
     LoadAjax.prototype.execute = function( notification )
     { 
-        
         var url = notification.body.urls.shift();
         //alert( url );
         $.ajax({
@@ -233,7 +234,8 @@
         Notification.HIDE_MODAl,
         Notification.SET_MODAL_BOY,
         Notification.LOCK_MODAL,
-        Notification.UNLOCK_MODAL
+        Notification.UNLOCK_MODAL,
+        Notification.MODAL_EDIT_HANDLE_POST
         ];
     };
 
@@ -259,6 +261,34 @@
                 
             case Notification.UNLOCK_MODAL:
                 this.viewComponent.modal('unlock');
+                break;
+            
+            case Notification.MODAL_EDIT_HANDLE_POST:
+                
+                var mediatorContext = this;
+                
+                $('#AttachmentAdminEditForm').submit(function(){
+                    mediatorContext.viewComponent.modal('lock');
+                    
+                    $.ajax({
+                        url: $(this).attr('action'),
+                        type: 'POST',
+                        data: $(this).serialize(),
+                        dataType: 'html',
+                        context: mediatorContext
+                    })
+                    .fail( function(){
+                        this.viewComponent.modal('unlock');
+                        alert('Attachment could not be updated!');
+                    })
+                    .done(function(){
+                        this.viewComponent.modal('unlock');
+                        this.viewComponent.modal('hide');
+                    });
+                    
+                    
+                    return false;
+                });
                 break;
         } 
         
@@ -357,6 +387,7 @@
             
             $item.attr('id', 'attachment-item-'+file.id );
             $item.find('.attachment-actions').append( '<button type="button" onclick="window.attachmentAdd.goTo(\'REMOVE_FILE_FROM_LIST\',{ id: \''+file.id+'\' });" class="btn btn-danger">Delete</button>' );
+            $item.find('.attachment-actions').append( '<button type="button" onclick="window.attachmentAdd.goTo(\'EDIT_FILE\',{ urls: [\''+settings.site_url+'admin/attachments/edit/'+file.id+'\'], asBody: [true] });" class="btn btn-primary">Edit</button>' );
             $item.find('.attchment-input-id').val( file.id );
             if( settings.relations == 'belongsTo' )
             {
@@ -411,6 +442,8 @@
     
     AttachmentAdd.prototype.initMediators = function(configObject)
     {
+        var $modal = $('#attachment-modal');
+        $('body').append( $modal );
         this.registerMediator( new Modal( Mediator.MODAL, $('#attachment-modal') ) );
         this.registerMediator( new MainList( Mediator.MAIN_LIST, $('#attachment-list .row') ) );
     };
@@ -447,6 +480,12 @@
             Notification.LOAD_AJAX,
             Notification.SET_MODAL,
             Process.embed.INIT_UI
+            ]);
+            
+        this.registerProcess( Process.EDIT_FILE, [
+            Notification.LOAD_AJAX,
+            Notification.SET_MODAL,
+            Notification.MODAL_EDIT_HANDLE_POST
             ]);
         
     };

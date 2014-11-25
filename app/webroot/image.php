@@ -378,6 +378,8 @@ if ($doSharpen)
 	imageconvolution($dst, $sharpenMatrix, $divisor, $offset);
 }
 
+
+
 // Make sure the cache exists. If it doesn't, then create it
 if (!file_exists(CACHE_DIR))
 	mkdir(CACHE_DIR, 0755);
@@ -399,11 +401,82 @@ else if (!is_writable(CACHE_DIR))
 // Write the resized image to the cache
 $outputFunction($dst, $resized, $quality);
 
+
+/*
+ * META DATA!! YO!
+ */
+
+// meta data
+function iptc_make_tag($rec, $data, $value)
+{
+    $length = strlen($value);
+    $retval = chr(0x1C) . chr($rec) . chr($data);
+
+    if($length < 0x8000)
+    {
+        $retval .= chr($length >> 8) .  chr($length & 0xFF);
+    }
+    else
+    {
+        $retval .= chr(0x80) . 
+                   chr(0x04) . 
+                   chr(($length >> 24) & 0xFF) . 
+                   chr(($length >> 16) & 0xFF) . 
+                   chr(($length >> 8) & 0xFF) . 
+                   chr($length & 0xFF);
+    }
+
+    return $retval . $value;
+}
+
+// We need to check if theres any IPTC data in the jpeg image. If there is then 
+// bail out because we cannot embed any image that already has some IPTC data!
+$image = getimagesize($resized, $info);
+
+// Set the IPTC tags
+$iptc = array();
+include_once 'imagemeta.php';
+$iptc['2#025'] = utf8_decode($keywords);
+$iptc['2#105'] = $headline;
+
+
+if( isset( $_GET['title']) ){
+    $iptc['2#120'] = $_GET['title'];
+}
+
+if( isset( $_GET['copyright']) ){
+    $iptc['2#116'] = $_GET['copyright'];
+}
+
+// Convert the IPTC tags into binary code
+$data = '';
+
+foreach($iptc as $tag => $string)
+{
+    $tag = substr($tag, 2);
+    $data .= iptc_make_tag(2, $tag, $string);
+}
+
+// Embed the IPTC data
+$content = iptcembed($data, $resized);
+
+// Write the new image data out to the file.
+
+ob_start();
+$fp = fopen($resized, "wb");
+fwrite($fp, $content);
+fclose($fp);
+ob_end_clean();
+
+
 // Put the data of the resized image into a variable
 ob_start();
 $outputFunction($dst, null, $quality);
 $data	= ob_get_contents();
 ob_end_clean();
+
+
+
 
 // Clean up the memory
 ImageDestroy($src);
