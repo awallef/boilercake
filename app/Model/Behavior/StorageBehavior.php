@@ -120,6 +120,7 @@ class StorageBehavior extends ModelBehavior {
                         $path = WWW_ROOT . $conf['base'] . DS . $this->getPath($model, $conf['path'], $type, $subtype);
                         $folder = new Folder();
                         $folder->create($path, false);
+                        $folder->chmod($path, 0777, true);
 
                         $model->data[$model->alias][$field] = $conf['base'] . DS . $this->getPath($model, $conf['path'], $type, $subtype) . DS . $name;
                         if( move_uploaded_file($temp_name, $path . DS . $name) )
